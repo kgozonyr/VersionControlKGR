@@ -19,8 +19,7 @@ namespace UserMaintenance_Z686LD
     public Form1()
         {
             InitializeComponent();
-            LastName.Text = Resource1.LastName; // label1
-            FirstName.Text = Resource1.FirstName; // label2
+            FullName.Text = Resource1.FullName; // label1
             Add.Text = Resource1.Add; // button1
 
             listUsers.DataSource = users;
@@ -32,8 +31,7 @@ namespace UserMaintenance_Z686LD
         {
             var u = new User()
             {
-                LastName = txtLastName.Text,
-                FirstName = txtFirstName.Text
+              FullName = txtFullName.Text
                 };
             users.Add(u);
 
