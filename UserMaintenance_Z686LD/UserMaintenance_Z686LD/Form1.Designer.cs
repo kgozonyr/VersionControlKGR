@@ -34,6 +34,7 @@ namespace UserMaintenance_Z686LD
             this.FullName = new System.Windows.Forms.Label();
             this.listUsers = new System.Windows.Forms.ListBox();
             this.fajlbaIras = new System.Windows.Forms.Button();
+            this.torles = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Add
@@ -81,11 +82,22 @@ namespace UserMaintenance_Z686LD
             this.fajlbaIras.UseVisualStyleBackColor = true;
             this.fajlbaIras.Click += new System.EventHandler(this.fajlbaIras_Click);
             // 
+            // torles
+            // 
+            this.torles.Location = new System.Drawing.Point(367, 325);
+            this.torles.Name = "torles";
+            this.torles.Size = new System.Drawing.Size(229, 41);
+            this.torles.TabIndex = 7;
+            this.torles.Text = "button1";
+            this.torles.UseVisualStyleBackColor = true;
+            this.torles.Click += new System.EventHandler(this.torles_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.torles);
             this.Controls.Add(this.fajlbaIras);
             this.Controls.Add(this.listUsers);
             this.Controls.Add(this.FullName);
@@ -105,6 +117,7 @@ namespace UserMaintenance_Z686LD
         private System.Windows.Forms.Label FullName;
         private System.Windows.Forms.ListBox listUsers;
         private System.Windows.Forms.Button fajlbaIras;
+        private System.Windows.Forms.Button torles;
     }
 }
 

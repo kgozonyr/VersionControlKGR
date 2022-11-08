@@ -70,6 +70,15 @@ namespace UserMaintenance_Z686LD {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Felhasználó törlése.
+        /// </summary>
+        internal static string DeleteUser {
+            get {
+                return ResourceManager.GetString("DeleteUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Teljesnév.
         /// </summary>
         internal static string FullName {

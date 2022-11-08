@@ -23,6 +23,7 @@ namespace UserMaintenance_Z686LD
             FullName.Text = Resource1.FullName; // label1
             Add.Text = Resource1.Add; // button1
             fajlbaIras.Text = Resource1.SaveToFile; // button2
+            torles.Text = Resource1.DeleteUser; // button3
 
             listUsers.DataSource = users;
             listUsers.ValueMember = "ID";
@@ -52,6 +53,12 @@ namespace UserMaintenance_Z686LD
                     }
                 }
             }
+        }
+
+        private void torles_Click(object sender, EventArgs e)
+        {
+            User törlendöuser = (User)listUsers.SelectedItem;
+            users.Remove(törlendöuser);
         }
     }
 }
