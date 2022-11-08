@@ -15,6 +15,10 @@ namespace UserMaintenance_Z686LD
         public Form1()
         {
             InitializeComponent();
+            LastName.Text = Resource1.LastName; // label1
+            FirstName.Text = Resource1.FirstName; // label2
+            Add.Text = Resource1.Add; // button1
+
         }
     }
 }
