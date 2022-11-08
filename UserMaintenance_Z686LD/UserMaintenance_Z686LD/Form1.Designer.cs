@@ -33,13 +33,14 @@ namespace UserMaintenance_Z686LD
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.FullName = new System.Windows.Forms.Label();
             this.listUsers = new System.Windows.Forms.ListBox();
+            this.fajlbaIras = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Add
             // 
             this.Add.Location = new System.Drawing.Point(367, 170);
             this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(229, 30);
+            this.Add.Size = new System.Drawing.Size(229, 43);
             this.Add.TabIndex = 0;
             this.Add.Text = "button1";
             this.Add.UseVisualStyleBackColor = true;
@@ -70,11 +71,22 @@ namespace UserMaintenance_Z686LD
             this.listUsers.Size = new System.Drawing.Size(272, 356);
             this.listUsers.TabIndex = 5;
             // 
+            // fajlbaIras
+            // 
+            this.fajlbaIras.Location = new System.Drawing.Point(367, 243);
+            this.fajlbaIras.Name = "fajlbaIras";
+            this.fajlbaIras.Size = new System.Drawing.Size(229, 41);
+            this.fajlbaIras.TabIndex = 6;
+            this.fajlbaIras.Text = "button1";
+            this.fajlbaIras.UseVisualStyleBackColor = true;
+            this.fajlbaIras.Click += new System.EventHandler(this.fajlbaIras_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.fajlbaIras);
             this.Controls.Add(this.listUsers);
             this.Controls.Add(this.FullName);
             this.Controls.Add(this.txtFullName);
@@ -92,6 +104,7 @@ namespace UserMaintenance_Z686LD
         private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.Label FullName;
         private System.Windows.Forms.ListBox listUsers;
+        private System.Windows.Forms.Button fajlbaIras;
     }
 }
 
