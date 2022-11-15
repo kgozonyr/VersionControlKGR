@@ -15,6 +15,7 @@ namespace Linq
     {
         private List<Country> countries = new List<Country>();
         private List<Ramen> ramens = new List<Ramen>();
+        private List<Brand> brands = new List<Brand>();
 
         public Form1()
         {
@@ -32,11 +33,14 @@ namespace Linq
                     var sor = sr.ReadLine().Split(';');
 
                     var countryName = sor[2];
+                    var markaName = sor[0];
                     var aktorszag = AddCountry(countryName);
+                    var aktmarka = AddBrand(markaName);
+
                     Ramen r = new Ramen
                     {
                         ID = ramens.Count,
-                        Brand = sor[0],
+                        Brand = aktmarka,
                         Name = sor[1],
                         CountryFK = aktorszag.ID,
                         Country = aktorszag,
@@ -61,6 +65,23 @@ namespace Linq
                     Name = countryName
                 };
                 countries.Add(eredmeny);                
+            }
+            return eredmeny;
+        }
+
+        private Brand AddBrand(string marka)
+        {
+            var eredmeny = (from c in brands
+                            where c.Name.Equals(marka)
+                            select c).FirstOrDefault();
+            if (eredmeny == null)
+            {
+                eredmeny = new Brand()
+                {
+                    ID = brands.Count,
+                    Name = marka
+                };
+                brands.Add(eredmeny);
             }
             return eredmeny;
         }
