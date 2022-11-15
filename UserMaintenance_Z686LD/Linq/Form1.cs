@@ -101,5 +101,32 @@ namespace Linq
         {
             GetCountries();
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Country kivalasztottorszag = (Country)listBox1.SelectedItem;
+            if (kivalasztottorszag==null)
+            {
+                return;
+            }
+
+            var eredmeny = from r in ramens 
+                           where r.CountryFK == kivalasztottorszag.ID 
+                           select r;
+            var eredmeny2 = from b in eredmeny
+                            group b.Rating by b.Brand.Name
+                            into f
+                            select new
+                            {
+                                markanev = f.Key,
+                                atlag = Math.Round(f.Average(), 2),
+                            };
+            var eredmeny3 = from g in eredmeny2
+                            orderby g.atlag descending
+                            select g;
+            dataGridView1.DataSource = eredmeny3.ToList();
+                            
+
+        }
     }
 }
