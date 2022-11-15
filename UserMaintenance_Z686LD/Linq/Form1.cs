@@ -21,6 +21,7 @@ namespace Linq
         {
             InitializeComponent();
             LoadData("ramen.csv");
+            GetCountries();
         }
 
         private void LoadData(string fileName)
@@ -48,7 +49,7 @@ namespace Linq
                     };
                     ramens.Add(r);
                 }
-                
+
             }
         }
 
@@ -64,7 +65,7 @@ namespace Linq
                     ID = countries.Count,
                     Name = countryName
                 };
-                countries.Add(eredmeny);                
+                countries.Add(eredmeny);
             }
             return eredmeny;
         }
@@ -84,6 +85,21 @@ namespace Linq
                 brands.Add(eredmeny);
             }
             return eredmeny;
+        }
+
+        void GetCountries()
+        {
+            var eredmeny = from c in countries 
+                           where c.Name.ToLower().Contains(textBox1.Text.ToLower()) 
+                           orderby c.Name 
+                           select c;
+            listBox1.DataSource = eredmeny.ToList();
+            listBox1.DisplayMember = "Name";
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            GetCountries();
         }
     }
 }
