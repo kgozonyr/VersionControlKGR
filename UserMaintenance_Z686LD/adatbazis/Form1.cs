@@ -100,6 +100,8 @@ namespace adatbazis
             r = xlSheet.get_Range(GetCell(2, 9), GetCell(flats.Count+1,9));
             r.Value = "=1000000*" + GetCell(2, 8) + "/" + GetCell(2, 7);
 
+            FormatTable(headers.Length,xlSheet.UsedRange.Rows.Count);
+
         }
         private string GetCell(int x, int y)
         {
@@ -118,5 +120,28 @@ namespace adatbazis
             return ExcelCoordinate;
         }
 
+        private void FormatTable(int lastcolumn, int lastrow)
+        {
+
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, lastcolumn));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range fulltableRange = xlSheet.get_Range(GetCell(2, 1), GetCell(lastrow,lastcolumn));
+            fulltableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range firstColumnRange  = xlSheet.get_Range(GetCell(2, 1), GetCell(lastrow, 1));
+            firstColumnRange.Font.Bold = true;
+            firstColumnRange.Interior.Color = Color.LightYellow;
+
+            Excel.Range lastColumnRange = xlSheet.get_Range(GetCell(2, lastcolumn), GetCell(lastrow, lastcolumn));
+            lastColumnRange.Interior.Color = Color.LightGreen;
+            lastColumnRange.NumberFormat = "0.00";
+        }
     }
 }
