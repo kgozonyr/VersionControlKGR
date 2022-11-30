@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace MNB
@@ -21,29 +22,28 @@ namespace MNB
         {
             InitializeComponent();
             dataGridView1.DataSource = Rates;
-            ProcessXml();
+            RefreshData();
             
         }
-
-        private string GetRates()
+        private void RefreshData()
         {
-            MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
-            GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody()
-            {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
-            };
-            GetExchangeRatesResponseBody response = mnbService.GetExchangeRates(request);
-            string result = response.GetExchangeRatesResult;
-            //MessageBox.Show(result);
-            return result;
+            Rates.Clear();
+            ProcessXml();
+            chartRateData.DataSource = Rates;
+            chartRateData.Series[0].ChartType = SeriesChartType.Line;
+            chartRateData.Series[0].XValueMember = "date";
+            chartRateData.Series[0].YValueMembers = "value";
+            chartRateData.Series[0].BorderWidth = 2;
+            chartRateData.Legends[0].Enabled = false;
+            chartRateData.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chartRateData.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chartRateData.ChartAreas[0].AxisY.IsStartedFromZero = false;
         }
 
         private void ProcessXml()
         {
-           XmlDocument xml = new XmlDocument();
-           xml.LoadXml(GetRates());
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(GetRates());
 
             foreach (XmlElement item in xml.DocumentElement)
             {
@@ -66,5 +66,22 @@ namespace MNB
                 }
             }
         }
+
+        private string GetRates()
+        {
+            MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
+            GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody()
+            {
+                currencyNames = "EUR",
+                startDate = "2020-01-01",
+                endDate = "2020-06-30"
+            };
+            GetExchangeRatesResponseBody response = mnbService.GetExchangeRates(request);
+            string result = response.GetExchangeRatesResult;
+            //MessageBox.Show(result);
+            return result;
+        }
+
+       
     }
 }
